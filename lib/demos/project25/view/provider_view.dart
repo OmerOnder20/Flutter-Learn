@@ -3,8 +3,19 @@ import 'package:provider/provider.dart';
 
 import '../viewModel/project_25_provider.dart';
 
-class ProviderView extends StatelessWidget {
+class ProviderView extends StatefulWidget {
   const ProviderView({super.key});
+
+  @override
+  State<ProviderView> createState() => _ProviderViewState();
+}
+
+class _ProviderViewState extends State<ProviderView> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<Provider25>(context, listen: false).fetch25Items();
+  }
 
   @override
   Widget build(BuildContext context) {

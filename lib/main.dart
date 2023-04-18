@@ -1,4 +1,6 @@
 import 'package:first_project_flutter/demos/project19/core/auth_manager.dart';
+import 'package:first_project_flutter/demos/project28/feature/products/products_view.dart';
+import 'package:first_project_flutter/demos/project28/feature/products/products_view_model.dart';
 import 'package:first_project_flutter/product/global/reqres_context.dart';
 import 'package:first_project_flutter/product/global/theme_notifier.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,8 @@ import '303/reqres_resources/service/reqres_service.dart';
 import '303/reqres_resources/viewModel/reqres_provider.dart';
 import 'demos/project25/viewModel/project_25_provider.dart';
 import 'demos/project26/viewModel/project_26_view_model.dart';
-import 'demos/project27_202yebak/project_27_view.dart';
+import 'demos/project28/product/controller/user_controller.dart';
+import 'demos/project28/product/service/user_service.dart';
 
 // Sadece data tutacaksak bir şeyi değiştirmeyeceksek direkt Provider() kullan.
 void main() {
@@ -33,6 +36,16 @@ void main() {
         create: (context) => AuthManager(context: context),
         lazy: true,
       ),
+      ChangeNotifierProvider<UserController>(
+        create: (context) => UserController(),
+      ),
+      ChangeNotifierProvider<ProductsViewModel>(
+        create: (context) => ProductsViewModel(UserService()),
+      ),
+      Provider<UserService>(
+        create: (context) => UserService(),
+        lazy: true,
+      )
     ],
     builder: (context, child) => const MyApp(),
   ));
@@ -82,7 +95,7 @@ class MyApp extends StatelessWidget {
       // },
       // routes: NavigatorRoutes().items,
       // onGenerateRoute: NavigatorCustom().onGenerateRoute,
-      home: const Project27(),
+      home: const ProductsView(),
       // home u yorum satırından kaldırırsan sadece home çalışır.
     );
   }
