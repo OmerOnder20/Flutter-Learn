@@ -26,6 +26,3 @@ class Service19 extends IService19 {
     return null;
   }
 }
-    
-
-      // Service19() : dio = Dio(BaseOptions(baseUrl: "https://reqres.in/api/"));

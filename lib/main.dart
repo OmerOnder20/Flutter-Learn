@@ -1,6 +1,7 @@
 import 'package:first_project_flutter/demos/project19/core/auth_manager.dart';
-import 'package:first_project_flutter/demos/project28/feature/products/products_view.dart';
 import 'package:first_project_flutter/demos/project28/feature/products/products_view_model.dart';
+import 'package:first_project_flutter/demos/project29/login/view/login_view.dart';
+import 'package:first_project_flutter/demos/project29/viewModel/login_provider.dart';
 import 'package:first_project_flutter/product/global/reqres_context.dart';
 import 'package:first_project_flutter/product/global/theme_notifier.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import 'demos/project25/viewModel/project_25_provider.dart';
 import 'demos/project26/viewModel/project_26_view_model.dart';
 import 'demos/project28/product/controller/user_controller.dart';
 import 'demos/project28/product/service/user_service.dart';
+import 'demos/project29/login/service/project_29_service.dart';
 
 // Sadece data tutacaksak bir şeyi değiştirmeyeceksek direkt Provider() kullan.
 void main() {
@@ -45,7 +47,8 @@ void main() {
       Provider<UserService>(
         create: (context) => UserService(),
         lazy: true,
-      )
+      ),
+      ChangeNotifierProvider<Login29Provider>(create: (context) => Login29Provider(LoginService29()))
     ],
     builder: (context, child) => const MyApp(),
   ));
@@ -95,7 +98,7 @@ class MyApp extends StatelessWidget {
       // },
       // routes: NavigatorRoutes().items,
       // onGenerateRoute: NavigatorCustom().onGenerateRoute,
-      home: const ProductsView(),
+      home: const Login29(),
       // home u yorum satırından kaldırırsan sadece home çalışır.
     );
   }
